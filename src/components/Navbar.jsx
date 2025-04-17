@@ -53,6 +53,16 @@ const Navbar = () => {
               Home
             </Link>
             <Link
+              to="/checkin"
+              className={`font-medium px-3 py-2 rounded-md hover:bg-white/10 transition ${
+                isScrolled
+                  ? "text-gray-600 hover:text-blue-500"
+                  : "text-white/90 hover:text-white"
+              }`}
+            >
+              CheckIn
+            </Link>
+            <Link
               to="/appointments"
               className={`font-medium px-3 py-2 rounded-md hover:bg-white/10 transition ${
                 isScrolled
@@ -61,16 +71,6 @@ const Navbar = () => {
               }`}
             >
               Appointments
-            </Link>
-            <Link
-              to="/labs"
-              className={`font-medium px-3 py-2 rounded-md hover:bg-white/10 transition ${
-                isScrolled
-                  ? "text-gray-600 hover:text-blue-500"
-                  : "text-white/90 hover:text-white"
-              }`}
-            >
-              Lab Tests
             </Link>
             <Link
               to="/pharmacy"
