@@ -1,12 +1,17 @@
 import React from "react";
 import HeroSection from "../../components/HeroSection";
-import PatientCheckInSystem from "../../components/Hospital";
+import PVaultFeatures from "../../components/PVaultFeatures";
+import FAQSection from "../../components/FAQSection";
+import PVaultCare from "../../components/PVaultCare";
+
 
 const Landing = () => {
   return (
     <div>
       <HeroSection />
-      <PatientCheckInSystem />
+      <PVaultFeatures/>
+      <PVaultCare/>
+      <FAQSection/>
       Landing goes here
     </div>
   );
