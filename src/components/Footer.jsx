@@ -19,7 +19,7 @@ const Footer = () => {
           {/* Brand and description */}
           <div className="col-span-1 md:col-span-1">
             <h2 className="text-3xl font-bold text-blue-900 drop-shadow-md">
-              Health Vault
+              pVault
             </h2>
             <p className="mt-4 text-blue-800 text-lg">
               Your comprehensive healthcare platform for managing appointments,
@@ -165,7 +165,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-3">
                 <Mail size={20} className="text-blue-500" />
-                <span className="text-blue-800">contact@healthvault.com</span>
+                <span className="text-blue-800">contact@pvault.com</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Clock size={20} className="text-blue-500" />
@@ -182,7 +182,7 @@ const Footer = () => {
         {/* Bottom bar with copyright */}
         <div className="mt-16 pt-8 border-t border-blue-300/30">
           <p className="text-center text-blue-700 text-sm">
-            © {new Date().getFullYear()} Health Vault. All rights reserved.
+            © {new Date().getFullYear()} pVault. All rights reserved.
             Developed by XJT Team.
           </p>
           <div className="mt-4 flex justify-center space-x-8">

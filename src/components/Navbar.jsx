@@ -37,7 +37,7 @@ const Navbar = () => {
                   isScrolled ? "text-gray-800" : "text-white"
                 }`}
               >
-                Health<span className="text-blue-500">Vault</span>
+                p<span className="text-blue-500">Vault</span>
               </span>
             </Link>
           </div>
@@ -83,7 +83,7 @@ const Navbar = () => {
               Pharmacy
             </Link>
             <Link
-              to="/records"
+              to="/blogs"
               className={`font-medium px-3 py-2 rounded-md hover:bg-white/10 transition ${
                 isScrolled
                   ? "text-gray-600 hover:text-blue-500"
@@ -180,7 +180,7 @@ const Navbar = () => {
               Pharmacy
             </Link>
             <Link
-              to="/records"
+              to="/blogs"
               className="text-gray-600 block px-3 py-2 rounded-md font-medium hover:bg-green-50 hover:text-blue-500"
             >
               Blogs
@@ -198,10 +198,10 @@ const Navbar = () => {
               </div>
               <div className="ml-3">
                 <Link
-                  to="/register"
+                  to="/signup"
                   className="bg-blue-500 text-white font-medium px-4 py-2 rounded-md hover:bg-blue-600"
                 >
-                  Register
+                  Sign Up
                 </Link>
               </div>
             </div>
