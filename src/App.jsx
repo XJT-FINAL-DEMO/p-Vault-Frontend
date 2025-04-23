@@ -70,6 +70,8 @@ import DoctorBlogs from "./pages/Dashboard/DoctorBlogs";
 import UpdateBlog from "./pages/Dashboard/UpdateBlog";
 import Profile from "./pages/Dashboard/Profile";
 import Settings from "./pages/Dashboard/Settings";
+import BlogPage from "./pages/user/BlogPosts";
+import PharmacyPage from "./pages/user/Pharmacy";
 
 function App() {
   return (
@@ -80,6 +82,8 @@ function App() {
             <Route index={true} element={<Landing />} />
             <Route path="/checkin" element={<CheckIn />} />
             <Route path="/appointments" element={<Appointments />} />
+            <Route path="/blogs" element={<BlogPage/>} />
+            <Route path="pharmacy" element={<PharmacyPage/>}/>
           </Route>
 
           <Route path="/login" element={<Login />} />
