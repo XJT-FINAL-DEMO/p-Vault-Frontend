@@ -14,12 +14,12 @@ export default {
       icon: CalendarIcon,
     },
     {
-      name: "Create Blogs",
+      name: "Create Pulse & Paper",
       Path: "/dashboard/Create-blog",
       icon: PlusIcon,
     },
     {
-      name: "Doc Blogs",
+      name: "Doc Pulse & Paper",
       Path: "/dashboard/blogs",
       icon: FileIcon,
     },

@@ -124,7 +124,7 @@ const Navbar = () => {
                   : "text-white/90 hover:text-white"
               }`}
             >
-              Blogs
+              Pulse & Paper
             </Link>
           </div>
 
