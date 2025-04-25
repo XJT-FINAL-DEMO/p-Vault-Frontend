@@ -1,24 +1,3 @@
-// import React from "react";
-// import heroBg from "../assets/images/herobg.mp4";
-// const HeroSection = () => {
-//   return (
-//     <div className="relative h-screen w-full overflow-hidden">
-//       {/* Video Background */}
-//       <video
-//         autoPlay
-//         loop
-//         muted
-//         classname="absolute top-0 left-0 min-w-full min-h-full w-auto h-auto object-cover z-0"
-//         src=""
-//       >
-//         <source src={heroBg} />
-//       </video>
-//     </div>
-//   );
-// };
-
-// export default HeroSection;
-
 import React from "react";
 import heroBg from "../assets/images/herobg.mp4";
 
