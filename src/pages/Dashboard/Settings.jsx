@@ -97,7 +97,7 @@ function ProfileSettings() {
               {previewUrl ? (
                 <img src={previewUrl} alt="Profile" className="w-full h-full object-cover" />
               ) : (
-                <div className="text-blue-500 text-5xl">DSM</div>
+                <div className="text-blue-500 text-5xl">DXA</div>
               )}
             </div>
             
@@ -138,7 +138,7 @@ function ProfileSettings() {
             <input 
               type="text" 
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
-              defaultValue="Sarah"
+              defaultValue="Xvien"
             />
           </div>
           <div>
@@ -146,7 +146,7 @@ function ProfileSettings() {
             <input 
               type="text" 
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
-              defaultValue="Mensah"
+              defaultValue="Asante"
             />
           </div>
           <div>
@@ -154,7 +154,7 @@ function ProfileSettings() {
             <input 
               type="email" 
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
-              defaultValue="sarah.mensah@example.com"
+              defaultValue="dr.asante@pvault.com"
             />
           </div>
           <div>
@@ -193,7 +193,7 @@ function ProfileSettings() {
             <input 
               type="text" 
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
-              defaultValue="Korle Bu Teaching Hospital"
+              defaultValue="Riverside Hospital"
             />
           </div>
           <div className="col-span-2">

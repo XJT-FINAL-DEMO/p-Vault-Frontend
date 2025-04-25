@@ -41,7 +41,10 @@ import { NavLink } from "react-router-dom"; // Fixed import from react-router-do
 const Sidebar = () => {
   return (
     <div className="flex flex-col w-60 gap-y-6 bg-blue-300 h-screen px-2 py-4 fixed left-0 top-0">
-      <span>Logo Here</span>
+       <div className="px-15 mb-6 text-2xl font-bold">
+        <span className="text-white">p</span>
+        <span className="text-blue-500">Vault</span>
+      </div>
       <div className="flex flex-col gap-y-6">
         {
           // sidebar content
@@ -62,7 +65,12 @@ const Sidebar = () => {
           })
         }
       </div>
-      <button className="mt-auto">Logout</button>
+        <NavLink 
+        to="/login" 
+        className="mt-auto bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-md text-center font-medium transition-colors duration-200"
+      >
+        Logout
+      </NavLink>
     </div>
   );
 };

@@ -1,10 +1,29 @@
-// export default Navbar;
 import { useState, useEffect } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  // Check if user is logged in on component mount and when localStorage changes
+  useEffect(() => {
+    const checkAuthStatus = () => {
+      const token = localStorage.getItem("token");
+      setIsLoggedIn(!!token);
+    };
+
+    // Check auth status on component mount
+    checkAuthStatus();
+
+    // Set up event listener for storage changes (in case user logs in/out in another tab)
+    window.addEventListener("storage", checkAuthStatus);
+    
+    return () => {
+      window.removeEventListener("storage", checkAuthStatus);
+    };
+  }, []);
 
   // Add scroll event listener to change navbar appearance when scrolling
   useEffect(() => {
@@ -19,6 +38,20 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Logout function
+  const handleLogout = () => {
+    // Clear authentication data
+    localStorage.removeItem("token");
+    localStorage.removeItem("userData");
+    localStorage.removeItem("userRole");
+    
+    // Update state
+    setIsLoggedIn(false);
+    
+    // Navigate to login page
+    navigate("/login");
+  };
 
   return (
     <nav
@@ -53,16 +86,6 @@ const Navbar = () => {
               Home
             </Link>
             <Link
-              to="/checkin"
-              className={`font-medium px-3 py-2 rounded-md hover:bg-white/10 transition ${
-                isScrolled
-                  ? "text-gray-600 hover:text-blue-500"
-                  : "text-white/90 hover:text-white"
-              }`}
-            >
-              CheckIn
-            </Link>
-            <Link
               to="/appointments"
               className={`font-medium px-3 py-2 rounded-md hover:bg-white/10 transition ${
                 isScrolled
@@ -72,6 +95,17 @@ const Navbar = () => {
             >
               Appointments
             </Link>
+            <Link
+              to="/checkin"
+              className={`font-medium px-3 py-2 rounded-md hover:bg-white/10 transition ${
+                isScrolled
+                  ? "text-gray-600 hover:text-blue-500"
+                  : "text-white/90 hover:text-white"
+              }`}
+            >
+              CheckIn
+            </Link>
+           
             <Link
               to="/pharmacy"
               className={`font-medium px-3 py-2 rounded-md hover:bg-white/10 transition ${
@@ -95,22 +129,47 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-3">
-            <Link
-              to="/login"
-              className={`font-medium px-3 py-2 transition ${
-                isScrolled
-                  ? "text-gray-600 hover:text-blue-500"
-                  : "text-white/90 hover:text-white"
-              }`}
-            >
-              Log In
-            </Link>
-            <Link
-              to="/signup"
-              className="bg-blue-500 text-white font-medium px-4 py-2 rounded-md hover:bg-blue-600 transition"
-            >
-              SignUp
-            </Link>
+            {isLoggedIn ? (
+              /* Buttons for logged-in users */
+              <>
+                <Link
+                  to="/appointments"
+                  className="bg-blue-500 text-white font-medium px-4 py-2 rounded-md hover:bg-blue-600 transition"
+                >
+                  Book Appointment
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className={`font-medium px-3 py-2 rounded-md transition ${
+                    isScrolled
+                      ? "text-gray-600 hover:text-blue-500 hover:bg-gray-100"
+                      : "text-white/90 hover:text-white hover:bg-white/10"
+                  }`}
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              /* Login and SignUp buttons for guests */
+              <>
+                <Link
+                  to="/login"
+                  className={`font-medium px-3 py-2 transition ${
+                    isScrolled
+                      ? "text-gray-600 hover:text-blue-500"
+                      : "text-white/90 hover:text-white"
+                  }`}
+                >
+                  Log In
+                </Link>
+                <Link
+                  to="/rolesignup"
+                  className="bg-blue-500 text-white font-medium px-4 py-2 rounded-md hover:bg-blue-600 transition"
+                >
+                  SignUp
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -187,24 +246,43 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200">
-            <div className="flex items-center px-5">
-              <div className="flex-shrink-0">
+            {isLoggedIn ? (
+              /* Buttons for logged-in users (mobile) */
+              <div className="px-5 flex flex-col space-y-2">
                 <Link
-                  to="/login"
-                  className="text-gray-600 font-medium px-3 py-2 hover:text-blue-500"
+                  to="/appointments"
+                  className="bg-blue-500 text-white font-medium px-4 py-2 rounded-md hover:bg-blue-600 text-center"
                 >
-                  Log In
+                  Book Appointment
                 </Link>
-              </div>
-              <div className="ml-3">
-                <Link
-                  to="/signup"
-                  className="bg-blue-500 text-white font-medium px-4 py-2 rounded-md hover:bg-blue-600"
+                <button
+                  onClick={handleLogout}
+                  className="text-gray-600 font-medium px-4 py-2 rounded-md hover:bg-gray-100 hover:text-blue-500 text-center"
                 >
-                  Sign Up
-                </Link>
+                  Logout
+                </button>
               </div>
-            </div>
+            ) : (
+              /* Login and SignUp buttons for guests (mobile) */
+              <div className="flex items-center px-5">
+                <div className="flex-shrink-0">
+                  <Link
+                    to="/login"
+                    className="text-gray-600 font-medium px-3 py-2 hover:text-blue-500"
+                  >
+                    Log In
+                  </Link>
+                </div>
+                <div className="ml-3">
+                  <Link
+                    to="/signup"
+                    className="bg-blue-500 text-white font-medium px-4 py-2 rounded-md hover:bg-blue-600"
+                  >
+                    Sign Up
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
