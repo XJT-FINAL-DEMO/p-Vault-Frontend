@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Search, MapPin, ShoppingCart, Filter, Calendar, Truck, Store, Upload } from 'lucide-react';
+import Vicodon from '../../assets/images/vicodon.jpeg'
 
 export default function PharmacyPage() {
   const [medications, setMedications] = useState([]);
@@ -55,7 +56,7 @@ export default function PharmacyPage() {
       const pharmacies = [
         { 
           id: 1, 
-          name: "HealthFirst Pharmacy", 
+          name: "Wellness Rx", 
           distance: "0.8 km", 
           address: "23 Main St, Accra", 
           rating: 4.7,
@@ -80,7 +81,7 @@ export default function PharmacyPage() {
         },
         { 
           id: 2, 
-          name: "MediPlus Pharmacy", 
+          name: "Green Valley Pharmacy", 
           distance: "1.2 km", 
           address: "45 Circle Road, Accra", 
           rating: 4.5,
@@ -105,7 +106,7 @@ export default function PharmacyPage() {
         },
         { 
           id: 3, 
-          name: "Care Pharmacy", 
+          name: "QuickScripts Pharmacy", 
           distance: "2.5 km", 
           address: "12 Independence Ave, Accra", 
           rating: 4.3,
@@ -130,7 +131,32 @@ export default function PharmacyPage() {
         },
         { 
           id: 4, 
-          name: "QuickMeds", 
+          name: "Custom Care Pharmacy", 
+          distance: "3.1 km", 
+          address: "78 Liberty Street, Accra", 
+          rating: 4.8,
+          inventory: [
+            {
+              name: "Amoxicillin",
+              description: "Antibiotic for bacterial infections",
+              quantity: 80,
+              manufacturer: "HealthPlus",
+              price: 16.25,
+              expiryDate: "2025-07-23"
+            },
+            {
+              name: "Metformin",
+              description: "Diabetes medication",
+              quantity: 75,
+              manufacturer: "DiaCare",
+              price: 13.50,
+              expiryDate: "2025-11-30"
+            }
+          ]
+        },
+        { 
+          id: 5, 
+          name: "BlackwoodDrug Co.", 
           distance: "3.1 km", 
           address: "78 Liberty Street, Accra", 
           rating: 4.8,
@@ -345,7 +371,7 @@ export default function PharmacyPage() {
               {selectedPharmacy.inventory.map((medication, index) => (
                 <div key={index} className="bg-white rounded-lg shadow overflow-hidden hover:shadow-md transition">
                   <div className="bg-gray-200 h-48 flex items-center justify-center">
-                    <img src="/api/placeholder/200/150" alt={medication.name} className="object-cover" />
+                    <img src={Vicodon} alt={medication.name} className="object-cover" />
                   </div>
                   <div className="p-4">
                     <h3 className="font-semibold text-lg">{medication.name}</h3>
@@ -460,7 +486,7 @@ export default function PharmacyPage() {
               {filteredMedications.map((medication, index) => (
                 <div key={index} className="bg-white rounded-lg shadow overflow-hidden hover:shadow-md transition">
                   <div className="bg-gray-200 h-48 flex items-center justify-center">
-                    <img src="/api/placeholder/200/150" alt={medication.name} className="object-cover" />
+                    <img src={Vicodon} alt={medication.name} className="object-cover" />
                   </div>
                   <div className="p-4">
                     <h3 className="font-semibold text-lg">{medication.name}</h3>

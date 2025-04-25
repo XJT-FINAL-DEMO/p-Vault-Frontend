@@ -1,7 +1,8 @@
-
-
 import { useState, useEffect } from "react";
-import { Pencil, Trash2, Clock, User, Tag, Eye } from "lucide-react";
+import { Clock, Tag, Eye } from "lucide-react";
+import Blog1 from '../../assets/images/blog1.jpeg'
+import Blog4 from '../../assets/images/blog4.jpeg'
+import BLog5 from '../../assets/images/blog5.jpeg'
 
 export default function DoctorBlogs() {
   const [blogs, setBlogs] = useState([]);
@@ -29,7 +30,7 @@ export default function DoctorBlogs() {
         specialty: "Endocrinology",
         date: "April 15, 2025",
         views: 543,
-        image: "/api/placeholder/800/400"
+        image: Blog1,
       },
       {
         id: 2,
@@ -41,7 +42,7 @@ export default function DoctorBlogs() {
         specialty: "Infectious Disease",
         date: "April 10, 2025",
         views: 1205,
-        image: "/api/placeholder/800/400"
+        image: Blog4,
       },
       {
         id: 3,
@@ -89,7 +90,7 @@ export default function DoctorBlogs() {
         specialty: "Pain Medicine",
         date: "March 15, 2025",
         views: 508,
-        image: "/api/placeholder/800/400"
+        image: Blog4,
       },
       {
         id: 7,
@@ -101,7 +102,7 @@ export default function DoctorBlogs() {
         specialty: "Endocrinology",
         date: "March 8, 2025",
         views: 876,
-        image: "/api/placeholder/800/400"
+        image: BLog5,
       }
     ];
     
@@ -149,19 +150,12 @@ export default function DoctorBlogs() {
     }
   };
 
-  // Delete blog functionality
-  const handleDelete = (blogId) => {
-    if (window.confirm("Are you sure you want to delete this blog post?")) {
-      setBlogs(blogs.filter(blog => blog.id !== blogId));
-    }
-  };
-
   return (
-    <div className="p-6 max-w-6xl mx-auto">
+    <div className="p-4 md:p-6 max-w-6xl mx-auto">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-blue-600 mb-1">My Blog Posts</h1>
-          <p className="text-gray-600">Manage the blog content you've created for patients</p>
+          <h1 className="text-xl md:text-2xl font-bold text-blue-600 mb-1">My Blog Posts</h1>
+          <p className="text-gray-600">View your published content for patients</p>
         </div>
         
         <div className="w-full md:w-auto mt-4 md:mt-0">
@@ -219,7 +213,7 @@ export default function DoctorBlogs() {
               <p className="text-gray-500">No blog posts found matching your search criteria.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {currentBlogs.map((blog) => (
                 <div key={blog.id} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
                   <img 
@@ -242,31 +236,13 @@ export default function DoctorBlogs() {
                       {blog.content}
                     </p>
                     
-                    <div className="flex flex-wrap gap-1 mb-3">
+                    <div className="flex flex-wrap gap-1 mt-auto">
                       {blog.tags.map((tag, idx) => (
                         <span key={idx} className="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded-full flex items-center">
                           <Tag size={12} className="mr-1" />
                           {tag}
                         </span>
                       ))}
-                    </div>
-                    
-                    <div className="flex items-center justify-end mt-auto pt-3 border-t border-gray-200">
-                      <div className="flex space-x-2">
-                        <button
-                          className="text-blue-600 hover:text-blue-800 flex items-center text-sm"
-                        >
-                          <Pencil size={16} className="mr-1" />
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => handleDelete(blog.id)}
-                          className="text-red-600 hover:text-red-800 flex items-center text-sm"
-                        >
-                          <Trash2 size={16} className="mr-1" />
-                          Delete
-                        </button>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -320,7 +296,7 @@ export default function DoctorBlogs() {
           )}
         </>
       ) : (
-        <div className="bg-white rounded-lg shadow-md p-8 text-center">
+        <div className="bg-white rounded-lg shadow-md p-6 md:p-8 text-center">
           <div className="mb-4 flex justify-center">
             <div className="bg-blue-100 p-3 rounded-full">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">

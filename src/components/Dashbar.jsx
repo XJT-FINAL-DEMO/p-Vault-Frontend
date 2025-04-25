@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 
-const DashBar = ({ username = "Patient", notifications = [] }) => {
+const DashBar = ({ username = "Doctor", notifications = [] }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -46,13 +46,7 @@ const DashBar = ({ username = "Patient", notifications = [] }) => {
   return (
     <div className="bg-white shadow-md w-full py-3 px-4">
       <div className="flex justify-between items-center">
-        {/* DashBar Title */}
-        <div className="flex items-center">
-          <h1 className="text-xl font-bold">
-            <span className="text-blue-600">p</span>
-            <span className="text-teal-500">Vault</span>
-          </h1>
-        </div>
+       
 
         {/* Search Form - For finding hospitals, labs, pharmacies */}
         <div className="hidden md:block flex-1 max-w-md mx-8">
@@ -202,7 +196,7 @@ const DashBar = ({ username = "Patient", notifications = [] }) => {
           {/* User Profile */}
           <div className="relative dropdown-container" onClick={toggleDropdown}>
             <button className="flex items-center space-x-2 focus:outline-none">
-              <div className="w-8 h-8 rounded-full bg-teal-500 flex items-center justify-center text-white font-medium">
+              <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-medium">
                 {username ? username.charAt(0).toUpperCase() : "P"}
               </div>
               <span className="hidden md:inline-block text-sm font-medium text-gray-700">

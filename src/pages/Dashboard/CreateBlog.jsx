@@ -1,17 +1,20 @@
-
-import { useState, useEffect } from "react";
-import { Pencil, Trash2, Save, X } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Pencil, Trash2, Save, X, Image, Upload } from "lucide-react";
+import Blog1 from "../../assets/images/blog1.jpeg"
+import Blog2 from "../../assets/images/blog2.png"
 
 export default function CreateBlog() {
   const [blogs, setBlogs] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [tags, setTags] = useState("");
-  const [currentTag, setCurrentTag] = useState("");
   const [tagsList, setTagsList] = useState([]);
+  const [currentTag, setCurrentTag] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [previewMode, setPreviewMode] = useState(false);
+  const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     // Fetch blogs from API (mock data for now)
@@ -22,7 +25,8 @@ export default function CreateBlog() {
         content: "Diabetes management requires consistent monitoring and lifestyle adjustments...",
         tags: ["Diabetes", "Health Tips", "Chronic Care"],
         author: "Dr. Smith",
-        date: "April 15, 2025"
+        date: "April 15, 2025",
+        imageUrl: Blog1,
       },
       {
         id: 2,
@@ -30,16 +34,50 @@ export default function CreateBlog() {
         content: "As the virus continues to evolve, understanding the different variants is crucial...",
         tags: ["COVID-19", "Public Health", "Vaccines"],
         author: "Dr. Smith",
-        date: "April 10, 2025"
+        date: "April 10, 2025",
+        imageUrl: Blog2,
       }
     ];
     setBlogs(mockBlogs);
   }, []);
 
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImage(file);
+      
+      // Create preview URL for the image
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleImageClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleRemoveImage = () => {
+    setImage(null);
+    setImagePreview(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+
   const handleAddTag = () => {
     if (currentTag.trim() !== "" && !tagsList.includes(currentTag.trim())) {
       setTagsList([...tagsList, currentTag.trim()]);
       setCurrentTag("");
+    }
+  };
+
+  const handleTagKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleAddTag();
     }
   };
 
@@ -50,6 +88,10 @@ export default function CreateBlog() {
   const handleSubmit = (e) => {
     e.preventDefault();
     
+    // In a real app, you would upload the image to a server and get a URL back
+    // For this example, we'll use the preview URL or a placeholder
+    const imageUrl = imagePreview || (image ? URL.createObjectURL(image) : null);
+    
     if (isEditing) {
       // Update existing blog
       const updatedBlogs = blogs.map(blog => {
@@ -59,6 +101,7 @@ export default function CreateBlog() {
             title,
             content,
             tags: tagsList,
+            imageUrl: imageUrl || blog.imageUrl, // Keep old image if no new one
             date: new Date().toLocaleDateString('en-US', {
               month: 'long',
               day: 'numeric',
@@ -75,10 +118,11 @@ export default function CreateBlog() {
     } else {
       // Create new blog
       const newBlog = {
-        id: blogs.length + 1,
+        id: Date.now(), // More unique than blogs.length + 1
         title,
         content,
         tags: tagsList,
+        imageUrl,
         author: "Dr. Smith", // This would come from user context in a real app
         date: new Date().toLocaleDateString('en-US', {
           month: 'long',
@@ -91,9 +135,18 @@ export default function CreateBlog() {
     }
     
     // Reset form
+    resetForm();
+  };
+
+  const resetForm = () => {
     setTitle("");
     setContent("");
     setTagsList([]);
+    setImage(null);
+    setImagePreview(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
   };
 
   const handleEdit = (blog) => {
@@ -103,6 +156,11 @@ export default function CreateBlog() {
     setIsEditing(true);
     setEditingId(blog.id);
     setPreviewMode(false);
+    
+    // Set image preview if blog has an image
+    if (blog.imageUrl) {
+      setImagePreview(blog.imageUrl);
+    }
   };
 
   const handleDelete = (id) => {
@@ -112,22 +170,20 @@ export default function CreateBlog() {
   };
 
   const cancelEdit = () => {
-    setTitle("");
-    setContent("");
-    setTagsList([]);
+    resetForm();
     setIsEditing(false);
     setEditingId(null);
   };
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6 text-blue-600">
+    <div className="p-4 md:p-6 max-w-6xl mx-auto">
+      <h1 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-blue-600">
         {isEditing ? "Edit Blog Post" : "Create New Blog Post"}
       </h1>
       
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
         <div className="lg:col-span-2">
-          <div className="bg-white p-6 rounded-lg shadow-md">
+          <div className="bg-white p-4 md:p-6 rounded-lg shadow-md">
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
@@ -142,6 +198,47 @@ export default function CreateBlog() {
                   placeholder="Enter blog title"
                   required
                 />
+              </div>
+              
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Blog Image
+                </label>
+                <div className="flex flex-col items-center">
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    onChange={handleImageUpload}
+                    className="hidden"
+                    accept="image/*"
+                  />
+                  
+                  {imagePreview ? (
+                    <div className="relative w-full mb-2">
+                      <img 
+                        src={imagePreview} 
+                        alt="Blog preview" 
+                        className="w-full max-h-80 object-cover rounded-md"
+                      />
+                      <button
+                        type="button"
+                        onClick={handleRemoveImage}
+                        className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600"
+                      >
+                        <X size={16} />
+                      </button>
+                    </div>
+                  ) : (
+                    <div 
+                      onClick={handleImageClick}
+                      className="w-full border-2 border-dashed border-gray-300 rounded-md p-6 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 transition-colors"
+                    >
+                      <Image size={40} className="text-gray-400 mb-2" />
+                      <p className="text-gray-500 text-center">Click to upload an image</p>
+                      <p className="text-xs text-gray-400 mt-1">PNG, JPG or JPEG (max 5MB)</p>
+                    </div>
+                  )}
+                </div>
               </div>
               
               <div className="mb-4">
@@ -166,12 +263,13 @@ export default function CreateBlog() {
                 </div>
                 
                 {previewMode ? (
-                  <div className="border border-gray-300 rounded-md p-4 min-h-64 prose">
+                  <div className="border border-gray-300 rounded-md p-4 min-h-64 prose max-w-full">
                     {content ? (
                       <div dangerouslySetInnerHTML={{ __html: content.replace(/\n/g, '<br />') }} />
                     ) : (
                       <p className="text-gray-400">Preview will appear here</p>
                     )}
+
                   </div>
                 ) : (
                   <textarea
@@ -195,8 +293,9 @@ export default function CreateBlog() {
                     id="tags"
                     value={currentTag}
                     onChange={(e) => setCurrentTag(e.target.value)}
+                    onKeyDown={handleTagKeyDown}
                     className="flex-1 p-2 border border-gray-300 rounded-l-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Add tags"
+                    placeholder="Add tags (press Enter to add)"
                   />
                   <button
                     type="button"
@@ -226,7 +325,7 @@ export default function CreateBlog() {
                 </div>
               </div>
               
-              <div className="flex space-x-3">
+              <div className="flex flex-wrap gap-3">
                 <button
                   type="submit"
                   className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 flex items-center"
@@ -249,8 +348,8 @@ export default function CreateBlog() {
           </div>
         </div>
         
-        <div className="lg:col-span-1">
-          <div className="bg-white p-6 rounded-lg shadow-md">
+        <div>
+          <div className="bg-white p-4 md:p-6 rounded-lg shadow-md">
             <h2 className="text-lg font-medium mb-4">Your Blog Posts</h2>
             
             {blogs.length === 0 ? (
@@ -259,9 +358,18 @@ export default function CreateBlog() {
               <div className="space-y-4">
                 {blogs.map((blog) => (
                   <div key={blog.id} className="border-b border-gray-200 pb-4 last:border-0">
+                    {blog.imageUrl && (
+                      <div className="mb-2">
+                        <img 
+                          src={blog.imageUrl} 
+                          alt={blog.title} 
+                          className="w-full h-32 object-cover rounded-md"
+                        />
+                      </div>
+                    )}
                     <h3 className="font-medium text-blue-600">{blog.title}</h3>
                     <p className="text-sm text-gray-500 mb-2">{blog.date}</p>
-                    <div className="flex space-x-2 mb-2">
+                    <div className="flex flex-wrap gap-1 mb-2">
                       {blog.tags && blog.tags.map((tag, idx) => (
                         <span key={idx} className="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded-full">
                           {tag}

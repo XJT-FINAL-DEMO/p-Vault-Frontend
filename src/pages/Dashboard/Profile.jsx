@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Calendar, Clock, MapPin, Phone, Mail, FileText, Award, Users, Star, Pencil } from 'lucide-react';
+import { Link } from 'react-router';
 
 function Profile() {
   const [activeTab, setActiveTab] = useState('about');
   
   // Sample doctor data
   const doctor = {
-    name: "Dr. Sarah Mensah",
+    name: "Dr. Xvien Asante",
     specialization: "Cardiologist",
     hospital: "Korle Bu Teaching Hospital",
     location: "Accra, Ghana",
@@ -14,16 +15,16 @@ function Profile() {
     reviews: 124,
     patients: 1240,
     experience: 12,
-    about: "Dr. Sarah Mensah is a board-certified cardiologist with over 12 years of experience in treating cardiovascular diseases. She specializes in preventive cardiology and heart failure management.",
+    about: "Dr. Xvien Asante is a board-certified cardiologist with over 12 years of experience in treating cardiovascular diseases. She specializes in preventive cardiology and heart failure management.",
     education: [
       { degree: "MD", institution: "University of Ghana Medical School", year: "2006-2012" },
       { degree: "Residency in Internal Medicine", institution: "Korle Bu Teaching Hospital", year: "2012-2015" },
       { degree: "Fellowship in Cardiology", institution: "Johns Hopkins Hospital, USA", year: "2015-2018" }
     ],
     contactInfo: {
-      email: "dr.mensah@pvault.com",
+      email: "dr.asante@pvault.com",
       phone: "+233 50 123 4567",
-      address: "Cardiology Department, Korle Bu Teaching Hospital, Accra"
+      address: "Cardiology Department, Riverside Hospital, Accra"
     },
     schedule: [
       { day: "Monday", hours: "9:00 AM - 2:00 PM" },
@@ -67,9 +68,9 @@ function Profile() {
                 <span>{doctor.hospital}, {doctor.location}</span>
               </div>
             </div>
-            <button className="mt-4 md:mt-0 bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors">
+            <Link to='/appointments' className="mt-4 md:mt-0 bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors">
               Book Appointment
-            </button>
+            </Link>
           </div>
 
           {/* Stats */}

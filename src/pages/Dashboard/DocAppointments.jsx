@@ -26,7 +26,7 @@ const DocAppointments = () => {
     const mockAppointments = [
       {
         id: 1,
-        patientName: "John Doe",
+        patientName: "Paa Kwesi",
         date: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1, 10, 0),
         duration: 30,
         status: "confirmed",
@@ -35,7 +35,7 @@ const DocAppointments = () => {
       },
       {
         id: 2,
-        patientName: "Jane Smith",
+        patientName: "Jennifer Arthur",
         date: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 2, 14, 30),
         duration: 45,
         status: "confirmed",
@@ -44,7 +44,7 @@ const DocAppointments = () => {
       },
       {
         id: 3,
-        patientName: "Robert Johnson",
+        patientName: "Ellen Mensah",
         date: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 3, 9, 15),
         duration: 60,
         status: "confirmed",
@@ -53,7 +53,7 @@ const DocAppointments = () => {
       },
       {
         id: 4,
-        patientName: "Emily Chen",
+        patientName: "Daniel Oppong",
         date: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 4, 13, 0),
         duration: 30,
         status: "confirmed",
@@ -62,7 +62,7 @@ const DocAppointments = () => {
       },
       {
         id: 5,
-        patientName: "Michael Brown",
+        patientName: "Esther Dzampah",
         date: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 8, 11, 30),
         duration: 45,
         status: "confirmed",

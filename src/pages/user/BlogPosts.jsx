@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Frown, X } from 'lucide-react';
+import bG1 from '../../assets/images/bp1.jpeg'
+import Blog3 from '../../assets/images/blog3.jpeg'
+import BLog5 from '../../assets/images/blog5.jpeg'
+import Blog6 from '../../assets/images/blog6.jpeg'
+import Blog7 from '../../assets/images/blog7.jpeg'
+import Blog8 from '../../assets/images/blog8.jpeg'
+
 
 // Sample blog data
 const blogPosts = [
@@ -8,8 +15,8 @@ const blogPosts = [
     id: 1,
     title: 'Managing Diabetes: Tips for Patients',
     content: 'Diabetes management requires consistent monitoring and lifestyle adjustments. Regular blood sugar monitoring, proper diet, exercise, and medication adherence are key components. Patients should aim for balanced meals with consistent carbohydrate intake, regular physical activity tailored to their abilities, and consistent medication schedules. Regular check-ups with healthcare providers help track progress and adjust treatment plans as needed. Understanding potential complications and warning signs is also essential for long-term health management. Support groups can provide emotional assistance and practical advice for daily challenges.',
-    image: '/api/placeholder/400/250',
-    author: 'Dr. Sarah Johnson',
+    image: bG1,
+    author: 'Dr. Lisa Tetteh',
     date: 'April 15, 2025',
     views: 543,
     categories: ['Diabetes', 'Health Tips', 'Chronic Care']
@@ -18,8 +25,8 @@ const blogPosts = [
     id: 2,
     title: 'Managing Chronic Pain: Multidisciplinary Approaches',
     content: 'Chronic pain affects millions worldwide and requires comprehensive management strategies. Combined approaches including physical therapy, medication, psychological support, and lifestyle modifications show best results. Physical therapy can improve mobility and strength while reducing pain levels. Medications should be used judiciously and with proper medical supervision. Cognitive behavioral therapy helps patients develop coping mechanisms and change negative thought patterns associated with pain. Stress management techniques including meditation, deep breathing exercises, and progressive muscle relaxation can significantly reduce pain perception. A proper balance of rest and activity prevents both deconditioning and overexertion, which can worsen pain symptoms.',
-    image: '/api/placeholder/400/250',
-    author: 'Dr. Michael Chen',
+    image: Blog3,
+    author: 'Dr. Michael',
     date: 'March 15, 2025',
     views: 508,
     categories: ['Pain Management', 'Chronic Care', 'Rehabilitation']
@@ -28,7 +35,7 @@ const blogPosts = [
     id: 3,
     title: 'The Role of Diet in Diabetes Management',
     content: 'Nutrition plays a central role in diabetes control. This article discusses carbohydrate counting, the glycemic index, meal timing, and other dietary considerations for optimal glucose management. Understanding carbohydrates is essential as they have the most significant impact on blood sugar levels. Patients should learn to identify different types of carbohydrates and their effects on glucose levels. Consistent meal timing helps maintain stable blood sugar throughout the day. Portion control using measuring tools or visual guides ensures appropriate caloric intake. Increasing fiber intake through vegetables, fruits, legumes, and whole grains can improve glucose control and digestive health. Hydration is also crucial; water is the best choice, while sugary beverages should be limited or avoided.',
-    image: '/api/placeholder/400/250',
+    image: BLog5,
     author: 'Dr. Amara Okafor',
     date: 'March 8, 2025',
     views: 876,
@@ -38,7 +45,7 @@ const blogPosts = [
     id: 4,
     title: 'Exercise Therapy for Joint Health',
     content: 'Regular appropriate exercise can significantly improve joint health and mobility. This post covers safe exercises for different conditions and how to integrate them into your daily routine. Low-impact activities like swimming, cycling, and elliptical training provide cardiovascular benefits without stressing sensitive joints. Range-of-motion exercises help maintain flexibility and reduce stiffness. Strengthening the muscles surrounding affected joints can provide better support and stability. Proper warm-up and cool-down routines prevent injury and reduce post-exercise soreness. For those with severe joint pain, water therapy offers resistance with minimal joint stress. Working with physical therapists to develop personalized exercise programs ensures safety and effectiveness for your specific condition.',
-    image: '/api/placeholder/400/250',
+    image: Blog6,
     author: 'Dr. James Wilson',
     date: 'February 28, 2025',
     views: 422,
@@ -48,7 +55,7 @@ const blogPosts = [
     id: 5,
     title: 'Understanding Blood Pressure Readings',
     content: 'Blood pressure readings can be confusing for many patients. This guide explains what the numbers mean, when to be concerned, and practical tips for monitoring at home. Blood pressure is recorded as two numbers: systolic (upper) pressure, which measures the force when the heart beats, and diastolic (lower) pressure, which measures force between beats. Ideal blood pressure is generally considered to be around 120/80 mm Hg, though normal ranges can vary by individual. Regular home monitoring provides valuable data for healthcare providers to assess treatment effectiveness. Proper measuring technique is crucial for accurate readings; patients should sit quietly for 5 minutes before measurement, position their arm correctly, and avoid caffeine or exercise for 30 minutes prior to taking readings.',
-    image: '/api/placeholder/400/250',
+    image: Blog7,
     author: 'Dr. Lisa Kwame',
     date: 'February 15, 2025',
     views: 712,
@@ -58,7 +65,7 @@ const blogPosts = [
     id: 6,
     title: 'Nutrition Myths Debunked',
     content: 'There\'s a lot of conflicting nutrition information online. This article addresses common myths and provides evidence-based recommendations for healthy eating patterns. Contrary to popular belief, carbohydrates are not inherently unhealthy; whole grains provide essential nutrients and fiber. The notion that eating fat makes you fat has been disproven; healthy fats are essential for brain function and hormone production. Cleanses and detox diets have little scientific support; the body has its own detoxification systems through the liver and kidneys. Not all calories are equal; the source matters significantly for how your body processes and utilizes energy. Nutrition needs are highly individualized based on age, sex, activity level, and medical conditions. Working with registered dietitians provides personalized guidance beyond general recommendations.',
-    image: '/api/placeholder/400/250',
+    image: Blog8,
     author: 'Dr. Priya Patel',
     date: 'February 1, 2025',
     views: 634,
