@@ -227,10 +227,10 @@ const Navbar = () => {
               Appointments
             </Link>
             <Link
-              to="/labs"
+              to="/checkin"
               className="text-gray-600 block px-3 py-2 rounded-md font-medium hover:bg-green-50 hover:text-blue-500"
             >
-              Lab Tests
+              CheckIn
             </Link>
             <Link
               to="/pharmacy"
@@ -242,7 +242,7 @@ const Navbar = () => {
               to="/blogs"
               className="text-gray-600 block px-3 py-2 rounded-md font-medium hover:bg-green-50 hover:text-blue-500"
             >
-              Blogs
+              Pulse & Paper
             </Link>
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200">

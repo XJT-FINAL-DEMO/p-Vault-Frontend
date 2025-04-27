@@ -89,7 +89,7 @@ export default function PVaultFeatures() {
           viewport={{ once: false, margin: "-100px" }}
           className="mt-16 text-center"
         >
-          <a href="#signup" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">
+          <a href="/pharmacy" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">
             Experience pVault Today
           </a>
         </motion.div>
