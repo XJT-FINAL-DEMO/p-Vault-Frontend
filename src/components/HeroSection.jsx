@@ -1,5 +1,6 @@
 import React from "react";
 import heroBg from "../assets/images/herobg.mp4";
+import { Link } from "react-router";
 
 const HeroSection = () => {
   return (
@@ -21,15 +22,16 @@ const HeroSection = () => {
       {/* Content Overlay */}
       <div className="relative z-20 flex flex-col items-center justify-center h-full text-white text-center px-4">
         <div className="backdrop-blur-md bg-black/10 rounded-xl p-8 border border-white/90 shadow-lg">
-          <h1 className="text-5xl font-bold mb-4">Welcome to Health Vault</h1>
+          <h1 className="text-5xl font-bold mb-4">Welcome to pVault </h1>
           <p className="text-xl mb-8">
             Your comprehensive healthcare platform for managing appointments,{" "}
             <br />
             lab tests, pharmacy services, and medical records.
           </p>
-          <button className="bg-blue-500 hover:bg-blue-700 px-6 py-3 rounded-lg text-lg transition-colors shadow-md">
+          <Link 
+          to='/checkin' className="bg-blue-500 hover:bg-blue-700 px-6 py-3 rounded-lg text-lg transition-colors shadow-md">
             Check In
-          </button>
+          </Link>
         </div>
       </div>
     </div>

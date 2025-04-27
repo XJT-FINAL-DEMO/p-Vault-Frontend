@@ -1,5 +1,5 @@
   
-import { Calendar, Calendar1, CalendarIcon, FileIcon, Home, PlusIcon, Settings2Icon, SquarePen, User } from "lucide-react";
+import { Calendar, Calendar1, CalendarIcon, FileIcon, Home, PillBottle, PillBottleIcon, PillIcon, PlusIcon, Settings2Icon, SquarePen, User } from "lucide-react";
 
 export default {
   NAVLINKS: [
@@ -28,6 +28,13 @@ export default {
     //   Path: "/dashboard/update-blog", // Path now matches the route without ID parameter
     //   icon: SquarePen,
     // },
+
+    {
+      name: "Medicines",
+      Path: "/dashboard/medicines",
+      icon: PillIcon,
+    },
+
     {
       name: "Profile",
       Path: "/dashboard/profile", // Fixed capitalization to match route
